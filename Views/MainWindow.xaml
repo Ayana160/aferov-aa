@@ -1,0 +1,122 @@
+<Window x:Class="HelpDesk.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="HelpDesk — Главное окно"
+        Height="600" Width="1000"
+        MinWidth="800" MinHeight="500"
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F5F5">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя панель -->
+        <Grid Grid.Row="0" Margin="0,0,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Text="HelpDesk" FontSize="24" FontWeight="Bold" Foreground="#1976D2"/>
+                <TextBlock Text="Система обработки заявок" FontSize="13" Foreground="#666"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <TextBlock x:Name="UserInfoText" Text="Пользователь: admin" FontSize="14"/>
+                <TextBlock x:Name="DateText" FontSize="12" Foreground="#888" HorizontalAlignment="Right"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Панель поиска и фильтров -->
+        <Grid Grid.Row="1" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="SearchTextBox"
+                     Grid.Column="0"
+                     Margin="0,0,10,0"
+                     ToolTip="Поиск по описанию, категории или статусу"
+                     Tag="Введите текст для поиска..."/>
+            <ComboBox x:Name="StatusComboBox"
+                      Grid.Column="1"
+                      Width="140"
+                      Margin="0,0,10,0"
+                      SelectedIndex="0"/>
+            <Button x:Name="SearchButton"
+                    Grid.Column="2"
+                    Content="Найти"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Click="SearchButton_Click"/>
+            <Button x:Name="ResetFilterButton"
+                    Grid.Column="3"
+                    Content="Сброс"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Click="ResetFilterButton_Click"/>
+            <TextBlock x:Name="TicketCountText"
+                       Grid.Column="4"
+                       VerticalAlignment="Center"
+                       Margin="15,0,0,0"
+                       FontSize="13"
+                       Foreground="#555"/>
+        </Grid>
+
+        <!-- DataGrid -->
+        <DataGrid x:Name="TicketsDataGrid"
+                  Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="Horizontal"
+                  AlternatingRowBackground="#EEF5FF"
+                  BorderBrush="#CCC"
+                  BorderThickness="1"
+                  MouseDoubleClick="TicketsDataGrid_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="№" Binding="{Binding Id}" Width="50"/>
+                <DataGridTextColumn Header="Категория" Binding="{Binding Category}" Width="140"/>
+                <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="*"/>
+                <DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="100"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="110"/>
+                <DataGridTextColumn Header="Дата" Binding="{Binding CreatedAt, StringFormat=dd.MM.yyyy}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Нижняя панель кнопок -->
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    Margin="0,15,0,0">
+            <Button x:Name="AddTicketButton"
+                    Content="Добавить заявку"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Click="AddTicketButton_Click"/>
+            <Button x:Name="EditTicketButton"
+                    Content="Изменить"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Click="EditTicketButton_Click"/>
+            <Button x:Name="DeleteTicketButton"
+                    Content="Удалить"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Click="DeleteTicketButton_Click"/>
+            <Button x:Name="RefreshButton"
+                    Content="Обновить"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Click="RefreshButton_Click"/>
+            <Button x:Name="LogoutButton"
+                    Content="Выйти"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Margin="30,5,5,5"
+                    Click="LogoutButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

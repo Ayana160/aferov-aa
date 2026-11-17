@@ -1,0 +1,58 @@
+﻿<Window x:Class="HelpDesk.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="HelpDesk - Авторизация"
+        Height="350"
+        Width="450"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    
+    <Grid Margin="30">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="HelpDesk"
+                   FontSize="28"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"/>
+
+        <TextBlock Grid.Row="2"
+           Text="Логин"
+           FontSize="14"/>
+
+        <TextBox x:Name="LoginTextBox"
+                 Grid.Row="3"
+                 Height="32"
+                 FontSize="14"/>
+
+        <TextBlock Grid.Row="5"
+                   Text="Пароль"
+                   FontSize="14"/>
+
+        <PasswordBox x:Name="PasswordInput"
+                     Grid.Row="6"
+                     Height="32"
+                     FontSize="14"/>
+
+        <Button x:Name="LoginButton"
+                Grid.Row="8"
+                Content="Войти"
+                Width="130"
+                Height="38"
+                HorizontalAlignment="Center"
+                Click="LoginButton_Click"/>
+        
+    </Grid>
+    
+</Window>
